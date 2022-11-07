@@ -47,6 +47,12 @@
 			<artifactId>spring-graphql-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>4.17.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -61,6 +67,19 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>4.11.0</version>
+				<configuration>
+					<propertyFile>
+						src/main/resources/liquibase/liquibase.properties
+					</propertyFile>
+					<changeLogFile>
+						src/main/resources/liquibase/db.changelog_master.yaml
+					</changeLogFile>
 				</configuration>
 			</plugin>
 		</plugins>

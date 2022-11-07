@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: classpath:liquibase/db_changelog/create_current_rates_cbr.sql
+  - include:
+      file: classpath:liquibase/db_changelog/create_transactions.sql
