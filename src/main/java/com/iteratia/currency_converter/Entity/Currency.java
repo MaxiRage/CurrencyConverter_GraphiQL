@@ -13,9 +13,9 @@ import java.time.LocalDateTime;
 @Entity
 public class Currency {
 
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//    @Column(name = "id")
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
 
     @Column(name = "num_code", nullable = false)
     private Long numCode;

@@ -1,3 +1,12 @@
+# Server
+server:
+  error:
+    include-binding-errors: always
+    include-message: always
+    include-exception: true
+  shutdown: graceful
+  port: 8080
+
 spring:
   # PostgreSQL
   datasource:
