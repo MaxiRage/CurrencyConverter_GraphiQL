@@ -31,3 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
+/src/FrontExchange/node_modules/

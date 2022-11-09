@@ -1,0 +1,13 @@
+type Currency {
+    charCode: String!,
+    numCode: Int,
+    nominal: Int,
+    name: String,
+    value: Float
+}
+
+type Query {
+    allCurrency: [Currency]
+}
+
+#type Subscription {} - нужно для обновления данных (в данном случае для подсчета объема и пр)
