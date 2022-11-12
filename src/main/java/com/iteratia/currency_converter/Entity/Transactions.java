@@ -30,6 +30,12 @@ public class Transactions {
     @Column(name = "timestamp", nullable = false)
     private LocalDateTime timestamp;
 
+    @Column(name = "result", nullable = false)
+    private BigDecimal result;
+
+    @Column(name = "volume", nullable = false)
+    private BigDecimal volume;
+
     @ManyToOne
     @JoinColumn(name = "initial_currency", nullable = false)
     private Currency initialCurrency;

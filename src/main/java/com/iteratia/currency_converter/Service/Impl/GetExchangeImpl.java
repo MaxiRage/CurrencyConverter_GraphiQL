@@ -3,6 +3,7 @@ package com.iteratia.currency_converter.Service.Impl;
 import com.iteratia.currency_converter.Entity.Currency;
 import com.iteratia.currency_converter.Repository.CurrencyRepository;
 import com.iteratia.currency_converter.Service.GetExchange;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.jsoup.Jsoup;
@@ -10,18 +11,19 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class GetExchangeImpl implements GetExchange {
 
     final CurrencyRepository currencyRepository;
 
-    @Bean
+    @PostConstruct
     @SneakyThrows
     @Override
     public void getEntityAllExchange() {
@@ -43,5 +45,13 @@ public class GetExchangeImpl implements GetExchange {
             currency.setTimestamp(LocalDateTime.now());
             currencyRepository.save(currency);
         }
+        Currency rub = new Currency();
+        rub.setNumCode(810L);
+        rub.setCharCode("RUR");
+        rub.setNominal(1L);
+        rub.setName("Российский рубль");
+        rub.setValue(BigDecimal.valueOf(1));
+        rub.setTimestamp(LocalDateTime.now());
+        currencyRepository.save(rub);
     }
 }
