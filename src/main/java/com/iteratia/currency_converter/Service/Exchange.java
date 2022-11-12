@@ -1,6 +1,8 @@
 package com.iteratia.currency_converter.Service;
 
+import com.iteratia.currency_converter.Entity.Transactions;
+
 public interface Exchange {
 
-    Double currencyExchange (String nameBefore, String nameAfter, Double volumeSale) throws Exception;
+    Transactions currencyExchange (String nameBefore, String nameAfter, Double volumeSale) ;
 }

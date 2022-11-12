@@ -6,8 +6,20 @@ type Currency {
     value: Float
 }
 
-type Query {
-    allCurrency: [Currency]
+type Transactions {
+    id: Int!,
+    initialCurrency: Currency,
+    initialValue: Float,
+    rate: Float,
+    finalCurrency: Currency
+    finalValue: Float,
+    volume: Float,
+    result: Float,
+    timestamp: String
 }
 
-#type Subscription {} - нужно для обновления данных (в данном случае для подсчета объема и пр)
+type Query {
+    allCurrency: [Currency]
+    allTransactions: [Transactions]
+    currencyExchange (nameBefore: String, nameAfter: String, volumeSale: Float): Transactions
+}

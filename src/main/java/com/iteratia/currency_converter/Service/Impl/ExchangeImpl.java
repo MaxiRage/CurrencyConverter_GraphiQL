@@ -2,11 +2,12 @@ package com.iteratia.currency_converter.Service.Impl;
 
 import com.iteratia.currency_converter.Entity.Currency;
 import com.iteratia.currency_converter.Entity.Transactions;
+import com.iteratia.currency_converter.Exceptions.EntityNotFoundException;
 import com.iteratia.currency_converter.Repository.CurrencyRepository;
 import com.iteratia.currency_converter.Repository.TransactionsRepository;
 import com.iteratia.currency_converter.Service.Exchange;
-import com.iteratia.currency_converter.exceptions.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -14,14 +15,15 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ExchangeImpl implements Exchange {
 
     public final CurrencyRepository currencyRepository;
     public final TransactionsRepository transactionsRepository;
 
     @Override
-    public Double currencyExchange(String nameBefore, String nameAfter, Double volumeSale) throws Exception {
-
+    public Transactions currencyExchange(String nameBefore, String nameAfter, Double volumeSale) {
+        log.info("Получен запрос на обмен " + volumeSale + " " + nameBefore + " на " + nameAfter);
         if (volumeSale <= 0)
             throw new EntityNotFoundException("Не корректные значения обмена");
 
@@ -45,6 +47,7 @@ public class ExchangeImpl implements Exchange {
         transactions.setResult(BigDecimal.valueOf(result));
         transactionsRepository.save(transactions);
 
-        return Math.pow(result, 2);
+        log.info("Запрос обработан");
+        return transactions;
     }
 }
