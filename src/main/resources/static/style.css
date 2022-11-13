@@ -1,0 +1,33 @@
+body {
+    background-color: cornflowerblue;
+    color: lightyellow;
+    text-align: center;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 20px;
+    margin-inside: 20px;
+
+}
+input[type=text] {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+select  {
+    font-size: large;
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+button {
+    font-size: large;
+    width: 10%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    color:  cornflowerblue;
+}
+
+

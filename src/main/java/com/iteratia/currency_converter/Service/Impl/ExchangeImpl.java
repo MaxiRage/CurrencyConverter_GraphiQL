@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 
 @Service
@@ -33,7 +34,8 @@ public class ExchangeImpl implements Exchange {
         double currencyValueBefore = Double.parseDouble(String.valueOf(currencyNameBefore.getValue())) / currencyNameBefore.getNominal();
         double currencyValueAfter = Double.parseDouble(String.valueOf(currencyNameAfter.getValue())) / currencyNameAfter.getNominal();
 
-        double result = currencyValueBefore / currencyValueAfter * volumeSale;
+        double rate = currencyValueBefore / currencyValueAfter;
+        double result = rate * volumeSale;
 
         Transactions transactions = new Transactions();
 
@@ -41,10 +43,10 @@ public class ExchangeImpl implements Exchange {
         transactions.setFinalCurrency(currencyNameAfter);
         transactions.setInitialValue(BigDecimal.valueOf(currencyValueBefore));
         transactions.setFinalValue(BigDecimal.valueOf(currencyValueAfter));
-        transactions.setRate(BigDecimal.valueOf(currencyValueBefore / currencyValueAfter));
+        transactions.setRate(BigDecimal.valueOf(rate).setScale(4, RoundingMode.DOWN));
         transactions.setTimestamp(LocalDateTime.now());
         transactions.setVolume(BigDecimal.valueOf(volumeSale));
-        transactions.setResult(BigDecimal.valueOf(result));
+        transactions.setResult(BigDecimal.valueOf(result).setScale(2, RoundingMode.DOWN));
         transactionsRepository.save(transactions);
 
         log.info("Запрос обработан");

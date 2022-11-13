@@ -23,3 +23,7 @@ type Query {
     allTransactions: [Transactions]
     currencyExchange (nameBefore: String, nameAfter: String, volumeSale: Float): Transactions
 }
+
+type Subscription{
+    allTransactions: [Transactions]
+}
